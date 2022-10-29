@@ -57,10 +57,12 @@ void start(double timeON, double timeOFF){
   if(countA>=255){
     CountFlag = true;
     countA = 250;
+    ActMotorB(countB);
   }
   if(countA<=0){
     CountFlag = false;
-    countA = 0;
+    StopMotorB();
+    delay(1000);
   }
   ActMotorA(countA);
   ActMotorB(countB);
