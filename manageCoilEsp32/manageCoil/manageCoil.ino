@@ -11,7 +11,7 @@ double timeON = 500;
 double timeOFF = 500;
 
 boolean CountFlag;
-int countA = 0;
+//int countA = 0;
 
 void setup() {
   pinMode(inA2, OUTPUT);
@@ -49,6 +49,8 @@ void loop() {
       case '0':
         Serial.println("end");
         MotorFlag = 0;
+        StopMotorA();
+        StopMotorB();
         break;
       default: break;
     }
@@ -61,6 +63,7 @@ void loop() {
     pwm();
   }
   if(MotorFlag == 3){
-    OnOff();
+    cross();
   }
+  
 }
