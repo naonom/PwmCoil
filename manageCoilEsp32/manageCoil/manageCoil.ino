@@ -29,6 +29,8 @@ void setup() {
   ledcAttachPin(inB1, 1);
 
   Serial.begin(115200);
+
+  reset();
 }
 
 void loop() {
@@ -67,10 +69,10 @@ void loop() {
     pwm();
   }
   if(MotorFlag == 3){
-    cross();
+    smallToBig();
   }
   if(MotorFlag == 4){
-    wave();
+    drop();
   }
   
 }
