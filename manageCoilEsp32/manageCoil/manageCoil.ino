@@ -46,6 +46,10 @@ void loop() {
         Serial.println("patern 3");
         MotorFlag = 3;
         break;
+      case '4':
+        Serial.println("patern 4");
+        MotorFlag = 4;
+        break;
       case '0':
         Serial.println("end");
         MotorFlag = 0;
@@ -57,13 +61,16 @@ void loop() {
   }
   
   if(MotorFlag == 1){
-    OnOff();
+    OnOffA();
   }
   if(MotorFlag == 2){
     pwm();
   }
   if(MotorFlag == 3){
     cross();
+  }
+  if(MotorFlag == 4){
+    wave();
   }
   
 }
