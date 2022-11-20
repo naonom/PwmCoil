@@ -33,13 +33,14 @@ void drop(){
   }
   OnOffA_p(countD);
   countD -= 4;
-  //Serial.println(countD);
   delay(50);
 }
 //252-100
 void OnOffA_p(int power){
+  Serial.println(power);
   ActMotorA(power);
   delay(50);
+  Serial.println(252-power);
   ActMotorA(252-power);
   delay(50);
 }
