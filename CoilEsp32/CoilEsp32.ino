@@ -1,4 +1,4 @@
-
+//coil pin
 const int inA1 = 12;
 const int inA2 = 14;
 const int enA = 13;
@@ -6,21 +6,33 @@ const int inB1 = 27;
 const int inB2 = 15;
 const int enB = 25;
 
-int MotorFlag;
-double timeON = 500;
-double timeOFF = 500;
+//resist pin
+const int re1 = 35;
+const int re2 = 34;
 
-boolean CountFlag;
-//int countA = 0;
+//resist value
+volatile int val1 = 0;
+volatile int val2 = 0;
+
+//coil var
+int MotorFlag;
+
+//subProsess
+void readResist(void * pvParameters){
+  while(1){
+    val1 = analogRead(re1);
+    val2 = analogRead(re2);
+    String ans = String(val1)+" "+String(val2);
+    Serial.println(ans);
+    delay(500);
+  }
+}
 
 void setup() {
   pinMode(inA2, OUTPUT);
   pinMode(enA, OUTPUT);
   pinMode(inB2, OUTPUT);
   pinMode(enB, OUTPUT);
-
-  MotorFlag = 0;
-  CountFlag = false;
   
   ledcSetup(0, 7812.5, 8);
   ledcAttachPin(inA1, 0);
@@ -28,9 +40,14 @@ void setup() {
   ledcSetup(1, 7812.5, 8);
   ledcAttachPin(inB1, 1);
 
+  pinMode(re1, ANALOG);
+  pinMode(re2, ANALOG);
   Serial.begin(115200);
+  
+  xTaskCreatePinnedToCore(readResist, "readResist", 4096, NULL, 1, NULL, 0);
 
-  reset();
+  MotorFlag = 0;
+  
 }
 
 void loop() {
@@ -55,13 +72,10 @@ void loop() {
       case '0':
         Serial.println("end");
         MotorFlag = 0;
-        StopMotorA();
-        StopMotorB();
+        StopMotor();
         break;
-      default: break;
     }
   }
-  
   if(MotorFlag == 1){
     OnOff();
   }
@@ -74,5 +88,4 @@ void loop() {
   if(MotorFlag == 4){
     drop();
   }
-  
 }

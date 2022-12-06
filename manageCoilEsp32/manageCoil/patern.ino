@@ -5,6 +5,13 @@ int countD = 252;
 boolean whichMotor = true;
 boolean flag = 0;
 
+void OnOff(){
+  ActMotor(256, 256);
+  delay(1000);
+  StopMotor();
+  delay(1000);
+}
+
 void smallToBig(){
   if(countA>=255){
     CountFlag = true;
@@ -33,7 +40,6 @@ void drop(){
   }
   OnOffA_p(countD);
   countD -= 4;
-  delay(50);
 }
 //252-100
 void OnOffA_p(int power){
@@ -58,14 +64,6 @@ void OnOffB(){
   delay(500);
 }
 
-void OnOff(){
-  ActMotorA(252);
-  ActMotorB(252);
-  delay(500);
-  StopMotorA();
-  StopMotorB();
-  delay(500);
-}
 
 void tantanA(){
   ActMotorA(50);
@@ -77,7 +75,7 @@ void tantanA(){
 void pwm(){
   if(countA>=255){
     CountFlag = true;
-    countA = 250;
+    countA = 255;
     delay(1000);
   }
   if(countA<=0){
@@ -91,11 +89,11 @@ void pwm(){
   //delay(timeOFF);
 
   if(CountFlag == true){
-    countA -= 10;
+    countA -= 3;
   }else{
-    countA += 10;
+    countA += 3;
   }
-  delay(10);
+  delay(30);
 }
 
 void cross(){
