@@ -14,7 +14,7 @@ void ActMotorB(int power){
 
 //ActAB
 void ActMotor(int powerA, int powerB){
-  Serial.println("ACT AB");
+  //Serial.println("ACT AB");
   digitalWrite(enA, HIGH);
   digitalWrite(enB, HIGH);
   ledcWrite(0, powerA);

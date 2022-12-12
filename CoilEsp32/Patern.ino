@@ -2,10 +2,19 @@
 //pwm
 //smallToBig
 //drop
+#define PI 3.14
 
 int countA = 0;
-int countC = 0;
-int countW = 0;
+
+int count1 = 0;
+int count2 = 100;
+boolean flag1;
+boolean flag2;
+
+float deg = 0, Rad;
+int motorP;
+float resist;
+
 int countD = 252;
 boolean whichMotor = true;
 boolean flag = 0;
@@ -79,4 +88,40 @@ void pwm(){
     countA += 3;
   }
   delay(30);
+}
+
+void AB(){
+  Rad = count1/(180/PI);
+  motorP = int((sin(Rad)+1)*122);
+  resist = val1/1000;
+  float temp = resist/4;
+  
+  if(count1>=360){
+    flag1 = true;
+    count1 = 360;
+    delay(50);
+  }
+  if(count1<=0){
+    flag1 = false;
+    delay(50);
+  }
+  //Serial.println(zeroToOne(val2,4095));
+  int pA = (sin(Rad)+1)*128;
+  int pB = (sin(Rad+temp)+1)*128;
+
+  String p = String(pB);
+  Serial.println(temp);
+  
+  ActMotor(pA, pB);
+  //ActMotorB(countB);
+  //StopMotorA();
+  //delay(timeOFF);
+
+  if(flag1 == true){
+    count1 = 0;
+  }else{
+    count1 += 3;
+  }
+  //Serial.println(resist);
+  delay(200);
 }

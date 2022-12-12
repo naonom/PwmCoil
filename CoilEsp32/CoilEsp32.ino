@@ -23,7 +23,7 @@ void readResist(void * pvParameters){
     val1 = analogRead(re1);
     val2 = analogRead(re2);
     String ans = String(val1)+" "+String(val2);
-    Serial.println(ans);
+    //Serial.println(ans);
     delay(500);
   }
 }
@@ -86,6 +86,6 @@ void loop() {
     smallToBig();
   }
   if(MotorFlag == 4){
-    drop();
+    AB();
   }
 }
