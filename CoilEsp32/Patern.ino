@@ -30,12 +30,13 @@ void OnOff(){
 void smallToBig(){
   if(countA>=255){
     CountFlag = true;
-    countA = 250;
+    countA = 255;
   }
   if(countA<=0){
     CountFlag = false;
-    StopMotorA();
-    delay(1000);
+    countA = 0;
+    //StopMotorA();
+    //delay(1000);
   }
   OnOffA_p(countA);
 
@@ -44,6 +45,7 @@ void smallToBig(){
   }else{
     countA += 4;
   }
+
 }
 
 //252-100
@@ -51,8 +53,8 @@ void OnOffA_p(int power){
   Serial.println(power);
   ActMotorA(power);
   delay(50);
-  Serial.println(252-power);
-  ActMotorA(252-power);
+  Serial.println(255-power);
+  ActMotorA(255-power);
   delay(50);
 }
 
