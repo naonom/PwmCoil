@@ -3,6 +3,7 @@ void ActMotorA(int power){
   //Serial.println("ACT A");
   digitalWrite(enA, HIGH);
   ledcWrite(0, power);
+  //Serial.println(power);
 }
 
 //ActB
@@ -10,6 +11,7 @@ void ActMotorB(int power){
   //Serial.println("ACT B");
   digitalWrite(enB, HIGH);
   ledcWrite(1, power);
+  //Serial.println(power);
 }
 
 //ActAB
@@ -19,6 +21,8 @@ void ActMotor(int powerA, int powerB){
   digitalWrite(enB, HIGH);
   ledcWrite(0, powerA);
   ledcWrite(1, powerB);
+  //Serial.println(powerA);
+  //Serial.println(powerB);
 }
 
 //StopA

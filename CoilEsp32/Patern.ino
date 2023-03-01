@@ -14,6 +14,7 @@ boolean flag2;
 float deg = 0, Rad;
 int motorP;
 float resist;
+float resist_2;
 
 int countD = 252;
 boolean whichMotor = true;
@@ -22,8 +23,10 @@ boolean CountFlag;
 
 void OnOff(){
   ActMotor(256, 256);
+  Serial.println(256);
   delay(1000);
   StopMotor();
+  Serial.println(0);
   delay(1000);
 }
 
@@ -41,7 +44,7 @@ void smallToBig(){
   OnOffA_p(countA);
 
   if(CountFlag == true){
-    countA -= 6;
+    countA -= 4;
   }else{
     countA += 4;
   }
@@ -80,6 +83,7 @@ void pwm(){
     delay(1000);
   }
   ActMotorA(countA);
+  Serial.println(countA);
   //ActMotorB(countB);
   //StopMotorA();
   //delay(timeOFF);
@@ -96,11 +100,12 @@ void AB(){
   Rad = count1/(180/PI);
   motorP = int((sin(Rad)+1)*122);
   resist = val1/1000;
+  resist_2 = val2/100+10;
   float temp = resist/4;
   
   if(count1>=360){
     flag1 = true;
-    count1 = 360;
+    //count1 = 360;
     delay(50);
   }
   if(count1<=0){
@@ -112,7 +117,7 @@ void AB(){
   int pB = (sin(Rad+temp)+1)*128;
 
   String p = String(pB);
-  Serial.println(temp);
+  Serial.println(pB);
   
   ActMotor(pA, pB);
   //ActMotorB(countB);
@@ -125,5 +130,5 @@ void AB(){
     count1 += 3;
   }
   //Serial.println(resist);
-  delay(200);
+  delay(resist_2);
 }
