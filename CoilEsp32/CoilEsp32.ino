@@ -1,10 +1,10 @@
 //coil pin
-const int inA1 = 12;
-const int inA2 = 14;
-const int enA = 13;
-const int inB1 = 27;
-const int inB2 = 15;
-const int enB = 25;
+const int inA1 = 12; //5
+const int inA2 = 14; //11
+const int enA = 13; //3
+const int inB1 = 27; //6
+const int inB2 = 15; //10
+const int enB = 25; //9
 
 //resist pin
 const int re1 = 35;
@@ -89,3 +89,11 @@ void loop() {
     AB();
   }
 }
+
+
+
+
+
+
+
+
