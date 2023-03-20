@@ -14,11 +14,12 @@ void setup() {
   pinMode(inA1, OUTPUT);
   pinMode(inA2, OUTPUT);
   pinMode(enA, OUTPUT);
-  //pinMode(inB2, OUTPUT);
-  //pinMode(enB, OUTPUT);
+  pinMode(inB1, OUTPUT);
+  pinMode(inB2, OUTPUT);
+  pinMode(enB, OUTPUT);
 
   digitalWrite(enA, HIGH);
-  //digitalWrite(enB, LOW);
+  digitalWrite(enB, HIGH);
 
   Serial.begin(9600);
 
@@ -43,13 +44,13 @@ void loop() {
 
   if(MotorFlag == 1){
     ActMotorA(255);
-    delay(1000);
+    delay(500);
     StopMotor();
-    delay(1000);
-    //ActMotorB(255);
-    //delay(1000);
-    //StopMotor();
-    //delay(1000);
+    delay(500);
+    ActMotorB(255);
+    delay(500);
+    StopMotor();
+    delay(500);
   }  
 
 }
@@ -64,8 +65,8 @@ void ActMotorA(int power){
 //ActB
 void ActMotorB(int power){
   Serial.println("Act B");
-  //digitalWrite(inB1, HIGH);
-  //digitalWrite(inB2, LOW);
+  digitalWrite(inB1, HIGH);
+  digitalWrite(inB2, LOW);
 }
 
 //StopAB
@@ -73,6 +74,6 @@ void StopMotor(){
   Serial.println("Stop AB");
   digitalWrite(inA1, LOW);
   digitalWrite(inA2, LOW);
-  //digitalWrite(inB1, LOW);
-  //digitalWrite(inB2, LOW);
+  digitalWrite(inB1, LOW);
+  digitalWrite(inB2, LOW);
 }
