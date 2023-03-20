@@ -1,10 +1,10 @@
 
 //pin
-const int inA1 = 12;
-const int inA2 = 7;
-const int enA = 11;
-const int inB1 = 3;
-const int inB2 = 8;
+const int inA1 = 5;
+const int inA2 = 11;
+const int enA = 3;
+const int inB1 = 6;
+const int inB2 = 10;
 const int enB = 9;
 
 boolean MotorFlag;
@@ -29,6 +29,7 @@ void setup() {
   CountFlag = false;
   
   Serial.begin(9600);
+  Serial.println("start");
 }
 
 void loop() {
@@ -37,6 +38,7 @@ void loop() {
       case 's':
         Serial.println("start");
         MotorFlag=true;
+        CountFlag=1;
         break;
       case 'e':
         Serial.println("end");
@@ -78,7 +80,7 @@ void start(double timeON, double timeOFF){
 }
 
 void ActMotorA(double volt){
-  digitalWrite(13, true);
+  //digitalWrite(13, true);
   Serial.println("ACT");
   digitalWrite(inA1, LOW);
   digitalWrite(inA2, HIGH);
@@ -86,7 +88,7 @@ void ActMotorA(double volt){
 }
 
 void ActMotorB(double volt){
-  digitalWrite(13, true);
+  //digitalWrite(13, true);
   digitalWrite(inB1, LOW);
   digitalWrite(inB2, HIGH);
   analogWrite(enB, volt);
@@ -94,14 +96,14 @@ void ActMotorB(double volt){
 
  //モーターを停止させる処理
 void StopMotorA(){
-   digitalWrite(13, false);
+   //digitalWrite(13, false);
    Serial.println("STOP");
    digitalWrite(inA1, LOW);
    digitalWrite(inA2, LOW);
    analogWrite(enA, 0);
 }
 void StopMotorB(){
-   digitalWrite(13, false);
+   //digitalWrite(13, false);
    digitalWrite(inB1, LOW);
    digitalWrite(inB2, LOW);
    analogWrite(enB, 0);
