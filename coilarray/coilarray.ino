@@ -33,15 +33,27 @@ void loop(){
     }
   }
   if(MotorFlag == 1){
-    Serial.println("act");
+    Serial.println("act 0");
     digitalWrite(pin,HIGH);
-    digitalWrite(4, LOW);
+    digitalWrite(inhibit_pin,LOW); // raise high to disable all
+    digitalWrite(4, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(2, LOW);
     delay(1000);
     Serial.println("stop");
     digitalWrite(pin,LOW);
+    digitalWrite(inhibit_pin,HIGH); // raise high to disable all
     delay(1000);
+    // Serial.println("act1");
+    // digitalWrite(pin,HIGH);
+    // digitalWrite(inhibit_pin,LOW); // raise high to disable all
+    // digitalWrite(4, LOW);
+    // digitalWrite(3, HIGH);
+    // digitalWrite(2, LOW);
+    // delay(1000);
+    // Serial.println("stop");
+    // digitalWrite(pin,LOW);
+    // delay(1000);
   }
 }
 
