@@ -39,10 +39,12 @@ void loop(){
     digitalWrite(4, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(2, LOW);
+    delayMicroseconds(10);
     delay(1000);
     Serial.println("stop");
     digitalWrite(pin,LOW);
     digitalWrite(inhibit_pin,HIGH); // raise high to disable all
+    delayMicroseconds(10);
     delay(1000);
     // Serial.println("act1");
     // digitalWrite(pin,HIGH);
