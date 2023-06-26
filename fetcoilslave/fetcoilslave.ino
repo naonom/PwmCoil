@@ -18,15 +18,37 @@ void loop() {
 // this function is registered as an event, see setup()
 void receiveEvent(int howMany) {
   int x = Wire.read();    // receive byte as an integer
-  if(x == 1){
-    digitalWrite(0, HIGH);
-    digitalWrite(9, HIGH);
-    digitalWrite(10, HIGH);
-    digitalWrite(11, HIGH);
-  }else{
-    digitalWrite(0, HIGH);
-    digitalWrite(9, LOW);
-    digitalWrite(10, LOW);
+  if(x == 0){
     digitalWrite(11, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(9, LOW);
+  }else if(x == 1){
+    digitalWrite(11, HIGH);
+    digitalWrite(10, LOW);
+    digitalWrite(9, LOW);
+  }else if(x == 10){
+    digitalWrite(11, LOW);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, LOW);
+  }else if(x == 11){
+    digitalWrite(11, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, LOW);
+  }else if(x == 100){
+    digitalWrite(11, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(9, HIGH);
+  }else if(x == 101){
+    digitalWrite(11, HIGH);
+    digitalWrite(10, LOW);
+    digitalWrite(9, HIGH);
+  }else if(x == 110){
+    digitalWrite(11, LOW);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, HIGH);
+  }else if(x == 111){
+    digitalWrite(11, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, HIGH);
   }
 }
