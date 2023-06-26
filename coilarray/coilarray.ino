@@ -2,7 +2,7 @@ int outputs[4] = {4,3,2}; // pins for selecting LED A B C
 //int io_pin = 9; // pin used for sending power to LEDs
 int inhibit_pin = 8; // pin for turning off all LEDs
 
-const int pin = 10;
+const int pin = 9;
 int MotorFlag;
 
 void setup() {
@@ -42,7 +42,7 @@ void loop(){
     delayMicroseconds(10);
     delay(1000);
     Serial.println("stop");
-    digitalWrite(pin,LOW);
+    digitalWrite(pin,HIGH);
     digitalWrite(inhibit_pin,HIGH); // raise high to disable all
     delayMicroseconds(10);
     delay(1000);
