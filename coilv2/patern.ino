@@ -73,7 +73,7 @@ void smallToBigDinamic(int pos, int time){
 
   timerCount[pos] += 1;
   //Serial.println(timerCount[pos]);
-  Serial.println(power[pos]);
+  //Serial.println(power[pos]);
 }
 
 void setTime(int pos, int time){
