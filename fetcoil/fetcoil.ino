@@ -1,6 +1,6 @@
 int MotorFlag;
-
-
+int countA =0;
+boolean CountFlag = false;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -31,7 +31,11 @@ void loop() {
         break;
       case '3':
         Serial.println("patern 3");
-        MotorFlag = 2;
+        MotorFlag = 3;
+        break;
+      case '4':
+        Serial.println("patern 4");
+        MotorFlag = 4;
         break;
       case '0':
         Serial.println("end");
@@ -104,6 +108,26 @@ void loop() {
     digitalWrite(11, LOW);
     Serial.println("LOW");
     delay(700);
+  }
+  if(MotorFlag == 4){
+    if(countA>=255){
+      CountFlag = true;
+      countA = 250;
+    }
+    if(countA<=0){
+      CountFlag = false;
+      countA = 0;
+    }
+    analogWrite(9, countA);
+    delay(100);
+
+    if(CountFlag == true){
+      countA -= 8;
+    }else{
+      countA += 8;
+    }
+
+
   }
 
   

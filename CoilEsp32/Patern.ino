@@ -75,12 +75,12 @@ void pwm(){
   if(countA>=255){
     CountFlag = true;
     countA = 255;
-    delay(1000);
+    //delay(1000);
   }
   if(countA<=0){
     CountFlag = false;
     StopMotorA();
-    delay(1000);
+    //delay(1000);
   }
   ActMotorA(countA);
   Serial.println(countA);
