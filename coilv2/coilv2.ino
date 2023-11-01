@@ -47,7 +47,7 @@ void loop() {
   }
 
   if(MotorFlag == 1){
-    smallToBigLinear(2);
+    smallToBigLinear(2, 2);
     act();
   }
 

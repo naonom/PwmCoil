@@ -34,11 +34,11 @@ void act(){
 
 
 //act one select coil num to pos
-void smallToBigLinear(int pos){
+void smallToBigLinear(int pos, int time){
   if(countFlag[pos] == true){
-    power[pos] -= 2;
+    power[pos] -= time;
   }else{
-    power[pos] += 2;
+    power[pos] += time;
   }
 
   if(power[pos] > 255){
@@ -49,6 +49,10 @@ void smallToBigLinear(int pos){
     countFlag[pos] = false;
     power[pos] = 0;
   }
+}
+
+void setPower(int pos, int power){
+  power[pos] = power;
 }
 
 //act one select coil num to pos
@@ -66,8 +70,12 @@ void smallToBigDinamic(int pos, int time){
     timerCount[pos] = 0;
     countFlag[pos] = !countFlag[pos];
   }
-  
+
   timerCount[pos] += 1;
   //Serial.println(timerCount[pos]);
   Serial.println(power[pos]);
+}
+
+void setTime(int pos, int time){
+  countTime[pos] = time;
 }
