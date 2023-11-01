@@ -1,5 +1,5 @@
 //move 5 big coils
-int MotorFlag;
+int MotorFlag = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -48,6 +48,11 @@ void loop() {
 
   if(MotorFlag == 1){
     smallToBigLinear(2);
+    act();
+  }
+
+  if(MotorFlag == 2){
+    smallToBigDinamic(2, 100);
     act();
   }
 
