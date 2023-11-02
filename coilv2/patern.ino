@@ -6,6 +6,7 @@ int power[5] = {0, 0, 0, 0, 0};
 boolean countFlag[5] = {false, false, false, false, false};
 int timerCount[5] = {0, 0, 0, 0, 0};
 
+
 void reset(){
   count1 = 0;
   count2 = 0;
@@ -51,10 +52,6 @@ void smallToBigLinear(int pos, int time){
   }
 }
 
-void setPower(int pos, int power){
-  power[pos] = power;
-}
-
 //act one select coil num to pos
 //frame 20 ms (50 to 1 sec)
 void smallToBigDinamic(int pos, int time){
@@ -76,6 +73,4 @@ void smallToBigDinamic(int pos, int time){
   //Serial.println(power[pos]);
 }
 
-void setTime(int pos, int time){
-  countTime[pos] = time;
-}
+

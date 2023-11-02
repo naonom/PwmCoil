@@ -56,6 +56,11 @@ void loop() {
     act();
   }
 
+  if(MotorFlag ==3){
+    move();
+    act();
+  }
+
 
 
   delay(20);

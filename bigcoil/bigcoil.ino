@@ -39,6 +39,12 @@ void loop() {
         Serial.println("patern 4");
         MotorFlag = 4;
         break;
+
+      case '5':
+        Serial.println("patern 5");
+        MotorFlag = 5;
+        break;
+      
       case '0':
         Serial.println("end");
         MotorFlag = 0;
@@ -107,6 +113,25 @@ void loop() {
     digitalWrite(6, LOW);
     digitalWrite(5, LOW);
     Serial.println("LOW");
+    delay(2000);
+  }
+
+  if(MotorFlag == 5){
+    analogWrite(9, 125);
+    delay(2000);
+    analogWrite(9, LOW);
+    analogWrite(11, 125);
+    delay(2000);
+    analogWrite(11, LOW);
+    analogWrite(10, 125);
+    delay(2000);
+    analogWrite(10, LOW);
+    analogWrite(6, 125);
+    delay(2000);
+    analogWrite(6, LOW);
+    analogWrite(5, 125);
+    delay(2000);
+    analogWrite(5, LOW);
     delay(2000);
   }
 
