@@ -33,13 +33,14 @@ void act(){
   analogWrite(5, power[4]);
 }
 
-
+//50 to 1 sec 
 //act one select coil num to pos
 void smallToBigLinear(int pos, int time){
+
   if(countFlag[pos] == true){
-    power[pos] -= time;
+    power[pos] -= 250/time;
   }else{
-    power[pos] += time;
+    power[pos] += 250/time;
   }
 
   if(power[pos] > 255){
