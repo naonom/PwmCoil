@@ -24,6 +24,9 @@ void setup() {
   Wire.begin(8);
   Wire.onReceive(receiveEvent);
   Wire.requestFrom(8, 4);
+  
+  //init
+  reset();
 }
 
 void loop() {
@@ -53,6 +56,10 @@ void loop() {
         Serial.println("patern 6");
         MotorFlag = 6;
         break;
+      case '7':
+        Serial.println("patern 7");
+        MotorFlag = 7;
+        break;
       case '0':
         Serial.println("end");
         MotorFlag = 0;
@@ -61,13 +68,18 @@ void loop() {
         analogWrite(9, LOW);
         analogWrite(6, LOW);
         analogWrite(5, LOW);
+        reset();
         break;
     }
   }
 
   if(MotorFlag == 1){
     //smallToBigLinear(2, 100);
+    smallToBigLinear(0, 100);
+    smallToBigLinear(1, 100);
     smallToBigLinear(2, 100);
+    smallToBigLinear(3, 100);
+    smallToBigLinear(4, 100);
     act();
   }
 
@@ -92,6 +104,13 @@ void loop() {
     movedinamic();
     act();
   }
+  if(MotorFlag ==7){
+    smallToBigLinearPower(0, 100, data[0]);
+    smallToBigLinearPower(1, 100, data[1]);
+    smallToBigLinearPower(3, 100, data[2]);
+    smallToBigLinearPower(4, 100, data[3]);
+    act();
+  }
   delay(20);
 }
 
@@ -99,11 +118,10 @@ void receiveEvent(int howmeny){
   for(uint8_t i = 0; i<4; i++){
     getdata[i] = Wire.read();
     data[i] = int(getdata[i]);
-    Serial.print(data[i]);
-    Serial.print(", ");
+    //Serial.print(data[i]);
+    //Serial.print(", ");
   }
-  //int x = Wire.read();
-  Serial.println(";");
+  //Serial.println(";");
 
   delay(100);
 }

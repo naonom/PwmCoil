@@ -2,10 +2,9 @@ int count1 = 0;
 int count2 = 0;
 
 //11, 10, 9, 6, 5
-int power[5] = {0, 0, 0, 0, 0};
+float power[5] = {0, 0, 0, 0, 0};
 boolean countFlag[5] = {false, false, false, false, false};
 int timerCount[5] = {0, 0, 0, 0, 0};
-
 
 void reset(){
   count1 = 0;
@@ -72,6 +71,25 @@ void smallToBigDinamic(int pos, int time){
   timerCount[pos] += 1;
   //Serial.println(timerCount[pos]);
   //Serial.println(power[pos]);
+}
+
+//50 to 1 sec 
+//act one select coil num to pos
+void smallToBigLinearPower(int pos, float time, float max){
+  if(countFlag[pos] == true){
+    power[pos] -= max/time;
+  }else{
+    power[pos] += max/time;
+  }
+
+  if(power[pos] > max){
+    countFlag[pos] = true;
+    power[pos] = max;
+  }
+  if(power[pos] < 0){
+    countFlag[pos] = false;
+    power[pos] = 0;
+  }
 }
 
 
