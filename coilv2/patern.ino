@@ -29,7 +29,8 @@ void act(){
   analogWrite(10, power[1]);
   analogWrite(9, power[2]);
   analogWrite(6, power[3]);
-  analogWrite(5, power[4]);
+  //analogWrite(5, power[4]);
+  analogWrite(3, power[4]);
 }
 
 //50 to 1 sec 

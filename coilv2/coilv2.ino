@@ -10,12 +10,16 @@ void setup() {
   Serial.begin(9600);
   Serial.println("start");
 
+//6   10
+//. 9
+//5   11
   //motor pin
   pinMode(11, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(6, OUTPUT);
-  pinMode(5, OUTPUT);
+  //pinMode(5, OUTPUT);
+  pinMode(3, OUTPUT);
 
   //manage patern
   MotorFlag = 0;
@@ -82,12 +86,10 @@ void loop() {
     smallToBigLinear(4, 100);
     act();
   }
-
   if(MotorFlag == 2){
     smallToBigDinamic(2, 50);
     act();
   }
-
   if(MotorFlag ==3){
     move();
     act();

@@ -1,7 +1,7 @@
 #include <Wire.h>
 
 void setup() {
-  pinMode(2, OUTPUT);
+  pinMode(7, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
@@ -38,42 +38,42 @@ void receiveEvent(int howMany) {
   // }
   //analogWrite(pin, HIGH);
   if(x == 0){
-    digitalWrite(2, LOW);
+    digitalWrite(7, LOW);
     digitalWrite(3, LOW);
     digitalWrite(5, LOW);
     digitalWrite(6, LOW);
   }else if(x == 1){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(5, LOW);
     digitalWrite(6, LOW);
   }else if(x == 10){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(5, HIGH);
     digitalWrite(6, LOW);
   }else if(x == 11){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(5, HIGH);
     digitalWrite(6, LOW);
   }else if(x == 100){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(5, LOW);
     digitalWrite(6, HIGH);
   }else if(x == 101){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(5, LOW);
     digitalWrite(6, HIGH);
   }else if(x == 110){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(5, HIGH);
     digitalWrite(6, HIGH);
   }else if(x == 111){
-    digitalWrite(2, HIGH);
+    digitalWrite(7, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(5, HIGH);
     digitalWrite(6, HIGH);

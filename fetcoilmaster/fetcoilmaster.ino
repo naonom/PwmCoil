@@ -151,7 +151,7 @@ void loop() {
     digitalWrite(6, LOW);
     digitalWrite(7, LOW);
 
-    delay(2000);
+    delay(8000);
 
   }
   if(MotorFlag == 3){
@@ -219,6 +219,20 @@ void loop() {
     digitalWrite(7, LOW);
     delay(700);
 
+  }
+  if(MotorFlag == 5){
+    Wire.beginTransmission(8);
+    Wire.write(111);   
+    Wire.endTransmission();
+    digitalWrite(11, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, HIGH);
+
+    delay(2000);
   }
 
 }
