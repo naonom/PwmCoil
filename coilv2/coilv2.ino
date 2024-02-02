@@ -13,12 +13,18 @@ void setup() {
 //6   10
 //. 9
 //5   11
+
+  //analogWrite(10, power[0]);
+  //analogWrite(9, power[1]);
+  //analogWrite(6, power[2]);
+  //analogWrite(5, power[3]);
+  //analogWrite(3, power[4]);
   //motor pin
-  pinMode(11, OUTPUT);
+  //pinMode(11, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(6, OUTPUT);
-  //pinMode(5, OUTPUT);
+  pinMode(5, OUTPUT);
   pinMode(3, OUTPUT);
 
   //manage patern
@@ -64,6 +70,34 @@ void loop() {
         Serial.println("patern 7");
         MotorFlag = 7;
         break;
+      case '8':
+        Serial.println("patern 8");
+        MotorFlag = 8;
+        break;
+      case '9':
+        Serial.println("patern 9");
+        MotorFlag = 9;
+        break;
+      case 'a':
+        Serial.println("patern 10");
+        MotorFlag = 10;
+        break;
+      case 'b':
+        Serial.println("patern 11");
+        MotorFlag = 11;
+        break;
+      case 'c':
+        Serial.println("patern 12");
+        MotorFlag = 12;
+        break;
+      case 'd':
+        Serial.println("patern 13");
+        MotorFlag = 13;
+        break;
+      case 'e':
+        Serial.println("patern 14");
+        MotorFlag = 14;
+        break;
       case '0':
         Serial.println("end");
         MotorFlag = 0;
@@ -73,17 +107,19 @@ void loop() {
         analogWrite(6, LOW);
         analogWrite(5, LOW);
         reset();
+        act();
+        delay(20);
         break;
     }
   }
 
   if(MotorFlag == 1){
     //smallToBigLinear(2, 100);
-    smallToBigLinear(0, 100);
-    smallToBigLinear(1, 100);
+    //smallToBigLinear(0, 100);
+    //smallToBigLinear(1, 100);
     smallToBigLinear(2, 100);
-    smallToBigLinear(3, 100);
-    smallToBigLinear(4, 100);
+    //smallToBigLinear(3, 100);
+    //smallToBigLinear(4, 100);
     act();
   }
   if(MotorFlag == 2){
@@ -113,6 +149,38 @@ void loop() {
     smallToBigLinearPower(4, 100, data[3]);
     act();
   }
+  if(MotorFlag ==8){
+    tsuno(2);
+    act();
+  }
+  if(MotorFlag ==9){
+    heart(2);
+    act();
+  }
+  if(MotorFlag ==10){
+    tsunoDinamic(2);
+    act();
+  }
+
+  if(MotorFlag ==11){
+    cycleAndAmp(4);
+    act();
+  }
+
+  if(MotorFlag ==12){
+    drop(2);
+    act();
+  }
+
+  if(MotorFlag ==13){
+    smallToBigLinearV2(2, 100, 1);
+    act();
+  }
+  if(MotorFlag ==14){
+    tsunoSlow(2);
+    act();
+  }
+
   delay(20);
 }
 
