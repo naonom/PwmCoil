@@ -6,6 +6,10 @@ int MotorFlag = 0;
 unsigned char getdata[4] = {0, 0, 0, 0};
 unsigned int data[4] = {0, 0, 0, 0};
 
+int timer = 0;
+
+unsigned int action[5] = {0, 0, 0, 0, 0};
+
 void setup() {
   Serial.begin(9600);
   Serial.println("start");
@@ -98,6 +102,20 @@ void loop() {
         Serial.println("patern 14");
         MotorFlag = 14;
         break;
+      case 'f':
+        Serial.println("patern 15");
+        MotorFlag = 15;
+        break;
+
+      case 'g':
+        Serial.println("patern 16");
+        MotorFlag = 16;
+        break;
+
+      case 'h':
+        Serial.println("patern 17");
+        MotorFlag = 17;
+        break;
       case '0':
         Serial.println("end");
         MotorFlag = 0;
@@ -107,6 +125,10 @@ void loop() {
         analogWrite(6, LOW);
         analogWrite(5, LOW);
         reset();
+        timer = 0;
+        for(int i=0; i<5; i++){
+          action[i] = 0;
+        }
         act();
         delay(20);
         break;
@@ -114,16 +136,17 @@ void loop() {
   }
 
   if(MotorFlag == 1){
-    //smallToBigLinear(2, 100);
-    //smallToBigLinear(0, 100);
-    //smallToBigLinear(1, 100);
     smallToBigLinear(2, 100);
-    //smallToBigLinear(3, 100);
-    //smallToBigLinear(4, 100);
+    smallToBigLinear(0, 100);
+    smallToBigLinear(1, 100);
+    //smallToBigLinear(2, 100);
+    smallToBigLinear(3, 100);
+    smallToBigLinear(4, 100);
     act();
   }
   if(MotorFlag == 2){
-    smallToBigDinamic(2, 50);
+    //smallToBigDinamic(2, 50);
+    smallToBigDinamicPower(2, 50, 180);
     act();
   }
   if(MotorFlag ==3){
@@ -143,10 +166,10 @@ void loop() {
     act();
   }
   if(MotorFlag ==7){
-    smallToBigLinearPower(0, 100, data[0]);
-    smallToBigLinearPower(1, 100, data[1]);
-    smallToBigLinearPower(3, 100, data[2]);
-    smallToBigLinearPower(4, 100, data[3]);
+    //smallToBigLinearPower(0, 100, data[0]);
+    smallToBigLinearPower(2, 100, 80);
+    //smallToBigLinearPower(3, 100, data[2]);
+    //smallToBigLinearPower(4, 100, data[3]);
     act();
   }
   if(MotorFlag ==8){
@@ -180,6 +203,112 @@ void loop() {
     tsunoSlow(2);
     act();
   }
+  if(MotorFlag ==15){
+    smallToBigDinamicPower(2, 100, 80);
+    act();
+  }
+
+  if(MotorFlag ==16){
+    if(timer >= 0 && timer < 50){
+      heart(2);
+    }
+    if(timer >= 50 && timer < 70){
+      heart(0);
+      heart(2);
+    }
+    if(timer >= 70 && timer < 94){
+      heart(0);
+      heart(2);
+      heart(3);
+    }
+    if(timer >= 94 && timer < 100){
+      heart(3);
+    }
+
+    if(timer >= 100 && timer < 144){
+      heart(0);
+      heart(1);
+      heart(3);
+
+    }
+    if(timer >= 144 && timer < 164){
+      heart(1);
+      heart(3);
+      heart(4);
+
+    }
+    if(timer >= 190 && timer < 194){
+      heart(0);
+      heart(1);
+      heart(4);
+
+    }
+    if(timer >= 194 && timer < 236){
+      heart(0);
+      heart(4);
+
+    }
+    if(timer >= 237 && timer < 250){
+      heart(0);
+
+    }
+    if(timer >= 250 && timer < 260){
+      heart(0);
+      heart(2);
+
+    }
+    if(timer >= 260 && timer < 284){
+      heart(0);
+      heart(2);
+      heart(4);
+
+    }
+    if(timer >= 284 && timer < 300){
+      heart(2);
+      heart(4);
+
+    }
+    if(timer >= 300 && timer < 344){
+      heart(1);
+      heart(2);
+      heart(4);
+
+    }
+    if(timer >= 344 && timer < 354){
+      heart(1);
+      heart(4);
+
+    }
+    if(timer >= 354 && timer < 394){
+      heart(1);
+
+    }
+    if(timer == 395){
+       timer = 0;
+    }
+    timer+=1;
+    act();
+    //Serial.println(timer);
+  }
+
+  if(MotorFlag ==17){
+    if(data[2] >= 1 && action[2] == 0){
+      action[2]+=1;
+    }
+    
+    if(action[2] >= 1){
+      smallToBigLinearV2(2, 100, 100);
+      timer+=1;
+    }
+    if(timer == 256){
+      action[2] -= 1;
+      timer = 0;
+    }
+    //Serial.println(timer);
+    act();
+  }
+
+  //Serial.println(data[2]);
 
   delay(20);
 }

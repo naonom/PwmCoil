@@ -7,6 +7,11 @@ boolean countFlag[5] = {false, false, false, false, false};
 int timerCount[5] = {0, 0, 0, 0, 0};
 int dropCount[5] = {0, 0, 0, 0, 0};
 
+unsigned int sensorCount[5] = {0, 0, 0, 0, 0};
+unsigned int endCheck[5] = {0, 0, 0, 0, 0};
+
+
+int check = 0;
 void reset(){
   count1 = 0;
   count2 = 0;
@@ -22,6 +27,8 @@ void reset(){
   }
 
 }
+
+
 
 
 //act analog coils
@@ -75,11 +82,33 @@ void smallToBigDinamic(int pos, int time){
   //Serial.println(power[pos]);
 }
 
+void smallToBigDinamicPower(int pos, int time, int max){
+  if(timerCount[pos] <= time && countFlag[pos] == false){
+    power[pos] = max;
+  }
+  
+  if(timerCount[pos] <= time && countFlag[pos] == true){
+    power[pos] = 0;
+  }
+
+  if(timerCount[pos] == time){
+    timerCount[pos] = 0;
+    countFlag[pos] = !countFlag[pos];
+  }
+
+  timerCount[pos] += 1;
+  //Serial.println(timerCount[pos]);
+  //Serial.println(power[pos]);
+}
+
+
 void smallToBigLinearV2(int pos, int makeTime, int disTime){
-    if(countFlag[pos] == true){
+  if(countFlag[pos] == true){
     power[pos] -= 250/disTime;
+    check+=1;
   }else{
     power[pos] += 250/makeTime;
+    check+=1;
   }
 
   if(power[pos] > 255){
@@ -89,6 +118,8 @@ void smallToBigLinearV2(int pos, int makeTime, int disTime){
   if(power[pos] < 0){
     countFlag[pos] = false;
     power[pos] = 0;
+    Serial.println(check);
+    check=0;
   }
 }
 
@@ -186,7 +217,8 @@ void heart(int pos){
     timerCount[pos]+=1;
   }
   if(timerCount[pos]>=62 && timerCount[pos]<=68){
-    power[pos] = 255;
+    //power[pos] = 150;
+    power[pos] = 165;
     timerCount[pos]+=1;
   }
   if(timerCount[pos]>=68 && timerCount[pos]<=74){
